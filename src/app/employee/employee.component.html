@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-header">
+    <div class="text-header">Register</div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="employeForm" >
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input  class="form-control"  type="text" formControlName="Username" [ngClass]="{'is-invalid' : submitted && f['Username'].errors }" >
+     
+        <div *ngIf="submitted && f['Username'].errors" class="invalid-feedback">
+          <div *ngIf="f['Username'].errors['required']"> Username is required</div>
+          <div *ngIf="f['Username'].errors['minlength']"> Username must be at least 6 characters </div>
+          <div *ngIf="f['Username'].errors['maxlength']"> username must not exceed 10 characters </div>
+        </div>
+     </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control"  type="email" formControlName="email" [ngClass]="{'is-invalid': submitted && f['email'].errors}" >
+        
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']"> Email is Required </div>
+          <div *ngIf="f['email'].errors['email']">Email is invalid </div>
+        </div>
+     </div>
+
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input  class="form-control" type="password" formControlName="Password" [ngClass]="{'is-invalid': submitted && f['Password'].errors}">
+         <div *ngIf="submitted && f['Password'].errors" class="invalid-feedback">
+          <div *ngIf="f['Password'].errors['required']"> password is required </div>
+         <div *ngIf="f['Password'].errors['minlength']"> password must be at least 6 characters </div>
+         <div *ngIf="f['Password'].errors['maxlength']"> username must not exceed 10 characters </div>
+       
+        </div>
+     </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input class="form-control"  id="confirm-password" type="password" formControlName="confirmpassword" [ngClass]="{'is-invalid': submitted && f['confirmpassword'].errors}">
+        <div *ngIf="submitted && f['confirmpassword'].errors" class="invalid-feedback">
+       
+          <div *ngIf="f['confirmpassword'].errors['required']"></div>
+          <div *ngIf="f['confirmpassword'].errors['matching']"> confirm password does not match  </div>
+        </div>
+      
+      
+      </div>
+
+     <button type="button" class="btn btn-secondary" *ngIf="isenable == false" (click)="onsubmit()" > submit </button>
+     <button type="button" class="btn btn-dark" *ngIf="isenable == true"  (click)="update()" > Update </button>
+
+     <!-- <input type="submit" class="btn" value="submit">    -->
+     </form>
+  </div>
+</div>
+
+
+<div class="container">
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>Sr.No</th>
+      <th>Username </th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Confirm password</th>
+      <th>Actions </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let item of employedata ; let i= index">
+      <td>{{i+1}}</td>
+      <td>{{item.Username}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.Password}}</td>
+      <td>{{item.confirmpassword}}</td>
+
+      <td > <i class="fa fa-pencil-square" aria-hidden="true" (click)="edit(i, item)" style="padding:10px;"></i>
+
+         <i class="fa fa-minus-square" aria-hidden="true" (click)="delete(i)" ></i> 
+
+      </td>
+   </tr>
+    
+    
+  </tbody>
+</table>
+</div>

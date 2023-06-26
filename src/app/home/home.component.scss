@@ -1,0 +1,29 @@
+
+
+section{
+    background-image: url('../../assets/Online-and-Classroom\ img.jpg');
+    height: 700px ;
+    background-size: cover;
+}
+
+.offcanvas .offcanvas-body p {
+ cursor:grab;
+}
+
+.btn-div{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 11em;
+
+}
+
+.btn-div .btn {
+    font-weight: bold;
+    color:white;
+    padding: 25px 40px;
+
+}
+
+

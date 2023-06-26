@@ -1,0 +1,72 @@
+
+<form  [formGroup]="Stafform" class="form">
+    <p class="title">Register </p>
+    <!-- <p class="message">Signup now and get full access to our app. </p> -->
+        <div class="flex">
+        <label>
+            <input required=""  placeholder="" type="text" formControlName="name"  class="input">
+            <span>Firstname</span>
+            <p *ngIf="Stafform.controls['name'].errors">Firstname is Required </p>
+        </label>
+
+        <label>
+            <input required="" placeholder="" type="text" formControlName="lname" class="input">
+            <span>Lastname</span>
+            <p *ngIf="Stafform.controls['lname'].errors">Firstname is Required </p>
+
+        </label>
+    </div>  
+            
+    <label>
+        <input required=""  placeholder="" type="email" formControlName="email" class="input">
+        <span>Email</span>
+        <p *ngIf="Stafform.controls['email'].errors">Firstname is Required </p>
+
+    </label> 
+        
+    <label>
+        <input required=""   placeholder="" type="password"  formControlName="password" class="input">
+        <span>Password</span>
+        <p *ngIf="Stafform.controls['password'].errors">Password is Required </p>
+
+    </label>
+    <label>
+        <input required="" placeholder="" type="tel" formControlName="phone" class="input">
+        <span>Phone Number</span>
+        <p *ngIf="Stafform.controls['phone'].errors">Number is Required </p>
+
+    </label>
+    <button class="submit" [disabled]="Stafform.invalid" *ngIf="isupdate == false"  (click)="add()" >Submit</button>
+    <button class="submit" *ngIf="isupdate == true" (click)="update()">Update</button>
+
+    <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+</form>
+
+
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>password</th>
+        <th>Phone</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of staff ; let i=index">
+        <td>{{item.name}}</td>
+        <td>{{item.lname}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.password}}</td>
+        <td>{{item.phone}}</td>
+
+        <td><i class="fa fa-pencil-square" aria-hidden="true" (click)="edit(item , i)" ></i>
+        <i class="fa fa-minus-circle" aria-hidden="true" (click)="delete(i)"></i></td>
+
+
+      </tr>
+    </tbody>
+  </table>

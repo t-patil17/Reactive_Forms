@@ -1,0 +1,147 @@
+<div class="wrapper">
+  <h2>Payment Form</h2>
+  <form method="POST" [formGroup]="formsbill">
+    <h4>Account</h4>
+    <div class="input-group">
+      <div class="input-box">
+        <input type="text" placeholder="Full Name" formControlName="name"
+          [ngClass]="{'is-invalid' : submitted && f['name'].errors}" required class="name">
+        <i class="fa fa-user icon"></i>
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors['required']">Full Name is Required</div>
+
+          <!-- <div *ngIf="f['name'].errors['minlength']">Username must be at least 6 character</div>
+          <div *ngIf="f['name'].errors['maxlength']">Username must not exceed 15 character</div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+
+      <div class="input-box">
+        <input type="email" placeholder="Email Id" formControlName="email" required class="name"
+          [ngClass]="{'is-invalid': submitted && f['email'].errors}">
+        <i class="fa fa-envelope icon"></i>
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email is Required</div>
+          <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-box">
+        <input type="text" placeholder=" Address" formControlName="address" required class="name"
+          [ngClass]="{'is-invalid': submitted && f['address'].errors}">
+        <i class="fa fa-map-marker icon"></i>
+        <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
+          <div *ngIf="f['address'].errors['required']">Address is Required </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-box">
+        <h4> Date of Birth</h4>
+        <input type="text" formControlName="birth" placeholder="DD" class="dob">
+        <input type="text" formControlName="birth" placeholder="MM" class="dob">
+        <input type="text" formControlName="birth" placeholder="YYYY" class="dob">
+      </div>
+
+      <div class="input-box">
+        <h4> Gender</h4>
+        <input type="radio" id="b1" name="gendar" checked class="radio">
+        <label for="b1">Male</label>
+        <input type="radio" id="b2" name="gendar" class="radio">
+        <label for="b2">Female</label>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-box">
+        <h4>Payment Details</h4>
+        <input type="radio" name="pay" id="bc1" checked class="radio">
+        <label for="bc1"><span><i class="fa fa-cc-visa"></i> Credit Card</span></label>
+        <input type="radio" name="pay" id="bc2" class="radio">
+        <label for="bc2"><span><i class="fa fa-cc-paypal"></i> Paypal</span></label>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-box">
+        <input type="tel" placeholder="Card Number" formControlName="cnum" required class="name"
+          [ngClass]="{'is-invalid': submitted && f['cnum'].errors}">
+        <i class="fa fa-credit-card icon"></i>
+        <div *ngIf="submitted && f['cnum'].errors" class="invalid-feedback">
+          <div *ngIf="f['cnum'].errors['required']"> Email is Required </div>
+          <div *ngIf="f['cnum'].errors['cnum']">Card number is invalid </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-box">
+        <input type="tel" placeholder="Card CVC" formControlName="cvcnumber" required class="name"
+          [ngClass]="{'is-invalid': submitted && f['cvcnumber'].errors }">
+        <i class="fa fa-user icon"></i>
+        <div *ngIf="submitted && f['cvcnumber'].errors " class="invalid-feedback">
+          <div *ngIf="f['cvcnumber'].errors['required']"> CVC is Required </div>
+          <div *ngIf="f['cvcnumber'].errors['cvc']"> CVC is invalid </div>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <select>
+            <option>01 jun</option>
+            <option>02 jun</option>
+            <option>03 jun</option>
+          </select>
+          <select>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-box">
+          <button (click)="payed()" *ngIf="isshows == false" type="submit">PAY NOW</button> <br><br>
+
+          <button (click)="update()" *ngIf="isshows == true" type="submit"> Update </button>
+        </div>
+      </div>
+    </form>
+
+</div>
+
+<div class="container mt-5 mb-5">
+  <table class="table table-success table-hover">
+    <thead>
+      <tr>
+        <th>Full name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Birth</th>
+        <th>Card Number</th>
+        <th>Card CVC</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of  billing ;  let i=index">
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.birth}}</td>
+        <td>{{item.cnum}}</td>
+        <td>{{item.cvc}}</td>
+        <td>
+          <i class="fa fa-pencil" aria-hidden="true" (click)="edit( i , item)" ></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="delete(i)" ></i></td>
+
+
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
